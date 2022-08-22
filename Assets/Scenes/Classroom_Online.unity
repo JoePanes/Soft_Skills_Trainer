@@ -2607,6 +2607,7 @@ MonoBehaviour:
   myYarnProject: {fileID: 7545569452688597077, guid: b706abf9f670fee43b09c80176fe311e, type: 3}
   characterSpeechManager: {fileID: 55344154}
   characterAudioSource: {fileID: 779485659}
+  GPTHandler: {fileID: 1628985271}
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -2644,7 +2645,7 @@ MonoBehaviour:
   SpeechServiceAPIKey: 014e4f573197493dac6eeba9a4965623
   SpeechServiceRegion: uksouth
   audioSource: {fileID: 779485659}
-  voiceName: 2
+  voiceName: 1
   VoicePitch: 0
   isReady: 0
 --- !u!4 &55344155
@@ -6911,7 +6912,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734497841}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &224688138
 MonoBehaviour:
@@ -6929,7 +6930,7 @@ MonoBehaviour:
   SpeechServiceAPIKey: 014e4f573197493dac6eeba9a4965623
   SpeechServiceRegion: uksouth
   audioSource: {fileID: 1192779490}
-  voiceName: 4
+  voiceName: 6
   VoicePitch: 0
   isReady: 0
 --- !u!114 &224688139
@@ -6948,6 +6949,7 @@ MonoBehaviour:
   myYarnProject: {fileID: 7545569452688597077, guid: b706abf9f670fee43b09c80176fe311e, type: 3}
   characterSpeechManager: {fileID: 224688138}
   characterAudioSource: {fileID: 1192779490}
+  GPTHandler: {fileID: 1080748505}
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -19699,6 +19701,7 @@ MonoBehaviour:
   myYarnProject: {fileID: 7545569452688597077, guid: b706abf9f670fee43b09c80176fe311e, type: 3}
   characterSpeechManager: {fileID: 613411542}
   characterAudioSource: {fileID: 2026871036}
+  GPTHandler: {fileID: 1785823909}
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -23981,6 +23984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1080748507}
   - {fileID: 224688137}
   - {fileID: 945619365}
   - {fileID: 1192779486}
@@ -29229,7 +29233,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 35b9e100790279d4b8d3d6295ddc3be3, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 35b9e100790279d4b8d3d6295ddc3be3, type: 3}
       propertyPath: m_LocalScale.x
@@ -35247,6 +35251,52 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1080748505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080748507}
+  - component: {fileID: 1080748506}
+  m_Layer: 0
+  m_Name: Jonathan_GPT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1080748506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080748505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c76799ecde9a854480387ff1c3b4f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persona: young boy
+  currentMood: 
+--- !u!4 &1080748507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080748505}
+  m_LocalRotation: {x: -0, y: 0.76604444, z: -0, w: 0.64278764}
+  m_LocalPosition: {x: -2.696, y: 0, z: 2.532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 734497841}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1086470088
 Mesh:
   m_ObjectHideFlags: 0
@@ -35598,15 +35648,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090925002}
-  m_LocalRotation: {x: -0, y: 0.22616506, z: -0, w: 0.974089}
-  m_LocalPosition: {x: -0.076, y: 1.21, z: -0.724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 628292719041108330}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 26.143, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1104220614
 GameObject:
   m_ObjectHideFlags: 0
@@ -37423,7 +37473,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734497841}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1192779487
 MonoBehaviour:
@@ -55873,6 +55923,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 491450, guid: 92f8eae6b9cd89041adc44709b6a9791, type: 3}
   m_PrefabInstance: {fileID: 1620210621}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1628985271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1628985272}
+  - component: {fileID: 1628985273}
+  m_Layer: 0
+  m_Name: Teacher_GPT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1628985272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628985271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876336343}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628985273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628985271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c76799ecde9a854480387ff1c3b4f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persona: friendly school teacher
+  currentMood: 
 --- !u!1001 &1634524229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60877,6 +60973,52 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1785823909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1785823910}
+  - component: {fileID: 1785823911}
+  m_Layer: 0
+  m_Name: Emily_GPT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1785823910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785823909}
+  m_LocalRotation: {x: -0, y: 0.4617486, z: -0, w: 0.8870109}
+  m_LocalPosition: {x: -2.2273865, y: 0, z: 0.9701506}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1918314944}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1785823911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785823909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c76799ecde9a854480387ff1c3b4f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persona: young girl
+  currentMood: 
 --- !u!43 &1788680619
 Mesh:
   m_ObjectHideFlags: 0
@@ -62876,6 +63018,7 @@ Transform:
   - {fileID: 55344155}
   - {fileID: 1797214801}
   - {fileID: 779485663}
+  - {fileID: 1628985272}
   m_Father: {fileID: 1730813716}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 100, z: 0}
@@ -63534,6 +63677,7 @@ Transform:
   - {fileID: 613411541}
   - {fileID: 644591898}
   - {fileID: 2026871032}
+  - {fileID: 1785823910}
   m_Father: {fileID: 1730813716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}

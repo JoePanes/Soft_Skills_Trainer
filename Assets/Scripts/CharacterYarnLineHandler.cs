@@ -17,6 +17,8 @@ public class CharacterYarnLineHandler : MonoBehaviour
     //public YarnCommandController YarnCommandController;
     public AudioSource characterAudioSource;
 
+    [SerializeField] private GameObject GPTHandler;
+
     private List<string> allLinesIDList = new List<string>();
     private List<string> characterLineIDList = new List<string>();
     private List<string> characterNegativeLineIDList = new List<string>();
@@ -231,7 +233,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
         //Debug.LogError(text);
     }
 
-    public void CharacterSpeechPlayback()                                   //sets the line to be sent to the TTS from the line list and sends
+    public async void CharacterSpeechPlayback()                                   //sets the line to be sent to the TTS from the line list and sends
     {
         //Debug.LogError(characterName + " speaking...");
 
@@ -239,6 +241,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
         {
             if (learningResponseActivate)
             {
+                learningResponseLine = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(learningResponseLine);
                 characterSpeechManager.SpeakWithSDKPlugin(learningResponseLine);
                 //StartCoroutine(CharacterVolTrim());
                 StartCoroutine(CharacterWaitForLineToFinish());
@@ -246,7 +249,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
             }
             else
             {
-                string lineToBeSpoken = characterTextLineList[characterLineCount];
+                string lineToBeSpoken = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(characterTextLineList[characterLineCount]);
                 characterSpeechManager.SpeakWithSDKPlugin(lineToBeSpoken);
                 characterLineCount++;
                 //StartCoroutine(CharacterVolTrim());
