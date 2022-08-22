@@ -482,6 +482,8 @@ public class SpeechManager : MonoBehaviour {
             int frequency = 16000;
             var unityData = FixedRAWAudioToUnityAudio(audiodata, 1, 16, out sampleCount);
 
+            unityData = removeClickingFromAudio(unityData);
+
             // Convert data to a Unity audio clip
             Debug.Log($"Converting audio data of size {unityData.Length} to Unity audio clip with {sampleCount} samples at frequency {frequency}.");
             var clip = ToClip("Speech", unityData, sampleCount, frequency);
@@ -492,6 +494,7 @@ public class SpeechManager : MonoBehaviour {
             Debug.Log($"Trigger playback of audio clip on AudioSource.");
             // Play audio
             audioSource.Play();
+            Invoke("stopAudio", clip.length - 0.1f);
         }
         else if (result.Reason == ResultReason.Canceled)
         {
@@ -505,5 +508,19 @@ public class SpeechManager : MonoBehaviour {
                 Debug.Log($"CANCELED: Did you update the subscription info?");
             }
         }
+    }
+    // When TTS is used, there is a consistent click at the start
+    private float[] removeClickingFromAudio(float[] original)
+    {
+        int amountToRemove = 30;
+        //Remove pop at start
+        original = original[amountToRemove..];
+
+        return original;
+    }
+
+    void stopAudio()
+    {
+        audioSource.Pause();
     }
 }
