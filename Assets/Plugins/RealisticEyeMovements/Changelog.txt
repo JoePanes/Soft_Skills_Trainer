@@ -1,0 +1,171 @@
+Changelog
+
+2.1.6
+- New optional eye positions that you can save: Looking Left and Looking Right.
+	You can set these to determine how much the eyes can look to the sides. Furthermore, if you use blendshapes for eyelid control and have appropriate blendshapes like "Looking_left" etc., you can make the eyelid bulge follow the eyes horizontally, so the eyelid bulge follows the pupil. The preset for Reallusion's CC4 characters already supports this. So does the preset for Reallusion's CC3+ characters that use ExPlus blendshapes. There is also a new preset for DAZ characters with eyelid side-movement support, read the Readme_Blendshapes.txt file in the DAZ preset folder to find out which blendshapes you have to export from DAZ for it to work.
+- New parameter in LookTargetController: Avoid looking through player.
+	If you check the checkbox Avoid Looking Through Player, the character will try to avoid choosing look targets that happens to be on the other side of the player. You can use this to avoid the character seemingly looking at the player when they are actually looking at the target behind the player.
+
+
+2.1.5
+- Fixed issue with OpenXR not doing the social triangle.
+
+2.1.4
+-Optional delegates on LookTargetController for more control
+	IsPlayerInViewDelegate
+		Used to determine whether the player is in view, and can be looked at. Register your own function here if you want some more custom logic, for example based on distance, raycasting to see whether there are occluding things in between etc.
+	IsPlayerLookingAtMeDelegate
+		Used to determine whether that player is looking at the character (for example to decide whether to stare back). Register your own function here if you want some more custom logic, for example based on distance, raycasting to see whether there are occluding things in between etc.
+	GetPOIsDelegate
+		Called every time the character is ready to look at a new thing. Returns the things that the character can choose from to look at. So instead of assigning a fixed list at start, you can update the points of interest whenever needed via this delegate. This is useful if there are changing/appearing/disappearing things in the environment that the character can look at. For example, in VR House Disco, every time the character is ready to look at a new target, this delegate returns the other dancers in front of the character as potential look targets to choose from.
+- Updated presets.
+-Replaced head and neck tilt angle with three each: pitch, roll and yaw. These angles are now applied after the head oriented towards the target. The head angles are applied not only for HeadControl set to Transform but also AnimatorIK and FinalIK.
+- Fixed issue where blinking didn't close the eyelids completely when looking up or down or eyeWidenOrSquint widened the eyes.
+- Fixed some issues when FinalIK components are not enabled at start.
+- Fixed issue when looking at player and the player camera switches from one to another.
+
+
+2.1.3
+- Switched to new head animation method HillHybrid. The old method SmoothDamp is still available if you want.
+- Added new parameters Head Tilt and Neck Tilt in case you want to "roll" the head around the forward axis.
+- Replaced parameter Nervousness with parameters Saccade Speed, Microsaccades per Minute and Macrosaccades per Minute.
+
+2.1.2
+- Made blinking more realistic with data from the paper "High-speed camera characterization of voluntary eye blinking kinematics"
+- Added parameters IdleTargetHorizAngle, HeadJitterFrequency and headJitterAmount
+- Implemented workaround for bug in SteamVR when using new Unity XR that reported wrong positions for left and right eye
+
+2.1.1
+- Added ability to fade REM in and out smoothly: 
+	- mainWeight 
+	- eyesWeight 
+	- eyelidsWeight 
+- Updated UMA preset
+
+2.1.0
+When updating, please delete the old RealisticEyeMovement folder first.
+- Presets now use json instead of a binary format.
+- Added preset for DAZ Studio characters.
+- Added support for multiple bones per eyelid.
+- New parameter "Update Mode" which has these options:
+	- LateUpdate (default, as before)
+	- FixedUpdate (if your animator is set to Animate Physics)
+	- External (replaces the setting "areUpdatesControlledExternally")
+- New parameter "Head Control" which has these options:
+	- AnimatorIK (default, uses Mecanim's OnAnimatorIK)
+	- Transform (custom head orientation for explicitly set head bone/object)
+	- FinalIK (if your character uses LookAtIK, set this option)
+	- Head Target (keeps updating the position of an object that you can use as target for Animation Rigging or other systems that orient that head towards a target)
+	- None
+- Deprecated support for Morph 3D (MCS) characters, because MCS itself has been discontinued.
+- Replaced Head Speed Modifier by two parameters: head speed when changing to new target and head speed for tracking target.
+
+2.0.4
+Fixed head IK issue.
+Added presets for Reallusion's Character Creator 3.
+
+2.0.3
+Improved head IK.
+Minor fixes.
+
+2.0.2
+Minor tweaks and fixes.
+Updated UMA preset.
+
+2.0.1
+Internal bugfixes.
+
+1.9.9
+Improved idle looking around when the character moves around.
+EyeWidenOrSquint: squinting is now also supported for eyelid control via blendshapes.
+Blink speed can be controlled via a parameter.
+Two new events you can subscribe to in LookTargetController: OnPlayerEntersPersonalSpace and OnLookAwayFromShyness.
+Fix: The head now also moves around when EyeControl is set to None.
+Fix: The character now also blinks and looks around idly when there is no LookTargetController component.
+Fix for VR setups when the character is enabled later at runtime only.
+Fix: Limit Head Angle slider works again.
+
+1.9.8
+Added slider for blinking speed
+Minor internal improvements
+
+1.9.7
+Improved head dynamics
+Added preset for MCS (Morph3D) males
+Fixed issue with Unity 2017.1 predefines
+
+1.9.6
+Added option to call Update functions externally, for complex setups using FinalIK.
+Improved eye blinking animation
+Added support for MCS (Morph3D) characters
+Improved looking when character walks
+
+1.9.5
+Added preset for MakeHuman 1.1 default rig
+Fixed exporting preset when no blendshapes are used
+Fixed issue when using both FinalIK's LookAt and FullBodyBiped components
+Added OnStartLookingAtPlayer and OnStopLookingAtPlayer events
+
+1.9.4
+Support for head bone assignment for rigs that don't use Humanoid Mecanim or Final-IK
+Fixed Webplayer
+Fixed issue with Final-IK when using long spine chains in LookAtIK
+
+1.9.3
+Improved the head movement smoothing.
+Fixed setup when using non-Mecanim rig with Final-IK
+Added checks for eyelid bone assignment
+
+1.9.2
+Fixed error messages when timescale is set to 0.
+
+1.9.1
+Fixed slow blinking for blendshapes (blinking when eyes sweep more than 25 degrees)
+Fixed changing look target when nervousness is set to higher value.
+Added support for Final IK.
+Added setting „Keep Target Even When Lost“
+Split „Max Eye Horiz Angle“ into two angles, one towards the nose and one away from it.
+Added support for 3rd person perspective games.
+Blendshapes configurations are now saved by blendshape name, not blendshape index, so you don't have to reconfigure when you modify the number of blendshapes in the 3D modelling software.
+
+1.9
+You can now export and import presets. There are premade presets for Mixamo, Autodesk Character Generator, MakeHuman, and UMA.
+
+1.8
+For eyelid control with bones, the position of the bones is now saved as well (before only the rotation was saved). This makes it easier to set up rigs like those from Autodesk Character Generator.
+New demo scene: you can switch between a character made with MakeHuman, Autodesk Character Generator, and Mixamo.
+Head speed slider: lets you adjust the head turning speed.
+Head latency (how much later the head starts turning than the eyes when looking at a new target) is now exposed in the API.
+Fixed bug in look duration when calling LookAtPoiDirectly.
+Fixed bug with eyeWiden slider.
+
+1.7
+Adapted to native VR support in Unity 5.1
+
+1.6
+Fixed eye angles when the head is tilted.
+Fixed errors when loading a new scene while the avatar is retained.
+
+1.5
+Updated for new Oculus SDK.
+
+1.4
+Added control Eye Widen Or Squint to eyelids when eyelids are controlled by bones.
+
+1.3
+Fixed demo scene.
+
+1.2
+Added two new positions to save for eyes and eyelids: Looking Up and Looking Down instead of relying on hardcoded values
+New parameter for limiting horizontal eye movement
+New parameter for limiting head rotation limits
+New parameter for cross-eye prevention
+New parameter for nervousness
+New parameter for personal space
+
+1.1
+new blink control: minBlinkTime and maxBlinkTime
+checkbox to disable macro saccades
+checkbox to show sightlines in editor
+settings for maximum up and down eye angles
+adjusted head and eye tracking after they jumped to a new target

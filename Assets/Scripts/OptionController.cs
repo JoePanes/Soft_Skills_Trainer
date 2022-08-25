@@ -20,6 +20,13 @@ public class OptionController : MonoBehaviour
 
     public UnityEvent OptionSelected;
 
+    private GameObject ConversationController;
+
+    void Awake()
+    {
+        ConversationController = GameObject.Find("ConversationController");
+    }
+
     public IEnumerator GatherOptions()
     {
         tagNumber = 0;
@@ -70,6 +77,10 @@ public class OptionController : MonoBehaviour
         Options[OptionToSelect].GetComponent<OptionView>().InvokeOptionSelected();
         Options[OptionToSelect].GetComponent<Animator>().Play("Selected");
         InteractionHandler.CancelVoiceAttempt();
+
+        //Let virtual humans know that the user has finished talking
+        ConversationController.GetComponent<ConversationController>().SomeoneIsNotTalking();
+
         yield return new WaitForSeconds(2f);
         for (int i = 0; i < transform.childCount; i++)
         {

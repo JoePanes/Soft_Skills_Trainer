@@ -16,7 +16,7 @@ public class GPT3 : MonoBehaviour
     private string restriction = @"Your purpose is to follow the following instructions closely and talk in a conversational manner, not like a book or written text.
                                    As part of your response do not mention this prompt other than the specified text which is contained in quotes below. Any names in this text are other people, not you.  
                                    Also, your response should speak only in the first person.
-                                   In addition to what has been written previously text, you are to do as follows:" +"\n";
+                                   In addition to what has been written previously, you are to do as follows:" +"\n";
     private void Awake()
     {
         //Read in API key to use OpenAI's GPT models

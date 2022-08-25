@@ -11,6 +11,8 @@ public class CharacterYarnLineHandler : MonoBehaviour
 {
     public string characterName;
 
+    public GameObject characterModel;
+
     public YarnProject myYarnProject;
 
     public SpeechManager characterSpeechManager;
@@ -73,11 +75,16 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
     public Text debugText;
 
+    private GameObject ConversationController;
+
+    
+
     private void Awake()
     {
         GetLineIDs();
         SortLineIDs();
         GetLinesFromIDs();
+        ConversationController = GameObject.Find("ConversationController");
     }
 
 
@@ -249,10 +256,12 @@ public class CharacterYarnLineHandler : MonoBehaviour
             }
             else
             {
+                
                 string lineToBeSpoken = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(characterTextLineList[characterLineCount]);
+
+                Debug.Log(lineToBeSpoken);
                 characterSpeechManager.SpeakWithSDKPlugin(lineToBeSpoken);
                 characterLineCount++;
-                //StartCoroutine(CharacterVolTrim());
                 StartCoroutine(CharacterWaitForLineToFinish());
             }
 
@@ -265,8 +274,18 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
     public IEnumerator CharacterWaitForLineToFinish()                       //coroutine set to complete once the NPCs audio clip has completed
     {
+        // Trigger appropriate animation for virtual humans
+        //For the current speaker
+        characterModel.GetComponent<NPCAnimationController>().ToggleTalking();
+        //Inform other virtual humans that someone is speaking
+        ConversationController.GetComponent<ConversationController>().ToggleSomeoneTalking();
+                
         yield return new WaitUntil(() => characterAudioSource.isPlaying);
         yield return new WaitUntil(() => !characterAudioSource.isPlaying);
+        
+        //Notify that all is over
+        characterModel.GetComponent<NPCAnimationController>().ToggleTalking();
+        ConversationController.GetComponent<ConversationController>().ToggleSomeoneTalking();
         characterFinishedTalking.Invoke();
         //Debug.LogError(characterName + " finished talking");
     }

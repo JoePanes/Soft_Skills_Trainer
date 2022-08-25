@@ -30,8 +30,12 @@ public class YarnCommandController : MonoBehaviour
     public GameObject[] charactersToSwitch;
     //public GameObject[] teacher;
 
+    private GameObject ConversationController;
+
     private void Awake()
     {
+        ConversationController = GameObject.Find("ConversationController");
+
         indicator.SetActive(false);
 
         for (int i = 0; i < charactersToSwitch.Length; i++)
@@ -53,6 +57,10 @@ public class YarnCommandController : MonoBehaviour
     [YarnCommand("activate_voice_recognition")]                                                 //YARN command to activate Wit.AI voice recognition and gather available options
     public void ActivateVoiceRecognition()
     {
+
+        //Let virtual humans know that the user is talking
+        ConversationController.GetComponent<ConversationController>().SomeoneIsTalking();
+
         //Debug.LogError("Attempting voice recog...");
         StartCoroutine(OptionController.GatherOptions());
         indicator.SetActive(true);
