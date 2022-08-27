@@ -14,9 +14,9 @@ AvatarMask:
   - m_Path: Bip01
     m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 L Thigh
     m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 L Thigh/Bip01 L Calf
@@ -40,7 +40,7 @@ AvatarMask:
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2
     m_Weight: 1
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head
     m_Weight: 0

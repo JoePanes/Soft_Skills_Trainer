@@ -20,6 +20,8 @@ public class NPCAnimationController : MonoBehaviour
         animControl = GetComponent<Animator>();
         
         InvokeRepeating("SelectIdleAnimation", 0.0f, 10.0f);
+        InvokeRepeating("SelectListeningAnimation", 0.0f, 3.0f);
+        InvokeRepeating("SelectTalkingAnimation", 0.0f, 10.0f);
 
         ConversationController = GameObject.Find("ConversationController");
     }
@@ -61,7 +63,6 @@ public class NPCAnimationController : MonoBehaviour
         } else 
         {
             //Select animation prior to toggles
-            SelectTalkingAnimation();
             animControl.SetBool("is_talking", true);
         }
     }
@@ -80,7 +81,6 @@ public class NPCAnimationController : MonoBehaviour
         else
         {
             //Select animation prior to toggles
-            SelectListeningAnimation();
             animControl.SetBool("is_listening", true);
         }
     }
