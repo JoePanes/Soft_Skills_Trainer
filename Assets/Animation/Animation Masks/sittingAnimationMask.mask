@@ -7,7 +7,7 @@ AvatarMask:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: sittingAnimationMask
-  m_Mask: 01000000010000000000000000000000000000000100000001000000010000000100000001000000010000000100000001000000
+  m_Mask: 00000000010000000000000000000000000000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
@@ -40,7 +40,7 @@ AvatarMask:
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2
     m_Weight: 1
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head
     m_Weight: 0
@@ -79,16 +79,16 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head/Bip01 MJaw/Bip01 LMouthBottom
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head/Bip01 MJaw/Bip01 MBottomLip
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head/Bip01 MJaw/Bip01 MTongue
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head/Bip01 MJaw/Bip01 RMouthBottom
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1/Bip01 Spine2/Bip01 Neck/Bip01
       Head/Bip01 MMiddleEyebrow
     m_Weight: 0
