@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ConversationController : MonoBehaviour
 {
+    private string transcript = "";
+
+    // Controls the use of GPT-3
+    // 0, use the human written script
+    // 1, text variation
+    // 2, prompted conversation
+    public const int NPC_TEXT_MODE = 1;
     public bool someoneTalking { get; private set;}
     
     void Awake()
@@ -37,4 +44,20 @@ public class ConversationController : MonoBehaviour
     {
         someoneTalking = false;
     }
+
+    /// <summary>
+    /// Add to the record of conversation
+    /// </summary>
+    /// <param name="talkerIdentifier">The identifier used to keep track of the speaker throughout the conversation</param>
+    /// <param name="newText">The new text to added to the conversation</param>
+    public void AddToTranscript(string talkerIdentifier, string newText)
+    {
+        transcript = transcript + ".\n" + talkerIdentifier + ": " + newText;
+    }
+
+    public string GetTranscript()
+    {
+        return transcript;
+    }
+
 }

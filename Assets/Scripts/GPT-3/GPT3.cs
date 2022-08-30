@@ -1,5 +1,7 @@
 using OpenAI_API;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -74,7 +76,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "Your sole purpose is as follows:\n Write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\"" + message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 1
+                temperature: 0.9
                 );
             Debug.Log("message: " + result.ToString());
             return result.ToString();
@@ -102,7 +104,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "You are a " + persona + ", write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\""+ message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 1
+                temperature: 0.9
                 );
 
             return result.ToString();
@@ -129,7 +131,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "You are a " + currentEmotion + ", "+ persona + ", write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\"" + message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 1
+                temperature: 0.9
                 );
 
             return result.ToString();
@@ -139,5 +141,35 @@ public class GPT3 : MonoBehaviour
             Debug.LogError(e.Message);
         }
         return "If you are hearing this, then there has been an error when using the generate variation function for GPT-3.";
+    }
+
+    public async Task<string> GetSentiment(string text)
+    {
+        try
+        {
+            var result = await api.Completions.CreateCompletionAsync(
+                prompt: "You are to classify the sentiment into one of four categories: positive, negative, aggressive, or neutral. If anything falls outside this, classify it as neutral. The text you are classifying the sentiment of is: \"" + text + "\". DO NOT reply with more than one word when classifying the sentiment. DO NOT include any additional text other than the sentiment in your response.",
+                max_tokens: 15,
+                temperature: 0.2
+                );
+
+            string sentiment = RemoveWhitespace(result.ToString());
+
+            Debug.Log("sentiment: " + sentiment);
+
+            return sentiment;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+        //In the event of an error, return neutral
+        return "error =(";
+    }
+
+    public static string RemoveWhitespace(string input)
+    {
+        return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c))
+            .ToArray());
     }
 }

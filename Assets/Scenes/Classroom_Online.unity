@@ -2812,7 +2812,7 @@ GameObject:
   - component: {fileID: 55344153}
   m_Layer: 0
   m_Name: TeacherNPC_TTS
-  m_TagString: Untagged
+  m_TagString: Teacher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7275,7 +7275,7 @@ GameObject:
   - component: {fileID: 224688139}
   m_Layer: 0
   m_Name: JonathanNPC_TTS
-  m_TagString: Untagged
+  m_TagString: Jonathan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12226,7 +12226,7 @@ GameObject:
   - component: {fileID: 393410090}
   m_Layer: 0
   m_Name: Male_Model
-  m_TagString: Untagged
+  m_TagString: Jonathan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21547,7 +21547,7 @@ GameObject:
   - component: {fileID: 613411543}
   m_Layer: 0
   m_Name: EmilyNPC_TTS
-  m_TagString: Untagged
+  m_TagString: Emily
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23186,6 +23186,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c860be88ffee4ae498b1ff784c87f552, type: 3}
       propertyPath: m_Name
       value: Female_Adult_02_facial
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c860be88ffee4ae498b1ff784c87f552, type: 3}
+      propertyPath: m_TagString
+      value: Teacher
       objectReference: {fileID: 0}
     - target: {fileID: 2036043854895618285, guid: c860be88ffee4ae498b1ff784c87f552, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26254,7 +26258,7 @@ GameObject:
   - component: {fileID: 734497841}
   m_Layer: 0
   m_Name: JonathanNPC
-  m_TagString: Untagged
+  m_TagString: Jonathan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28180,7 +28184,7 @@ GameObject:
   - component: {fileID: 779485660}
   m_Layer: 0
   m_Name: Female_Teacher_VoiceOVer/LipSync
-  m_TagString: Untagged
+  m_TagString: Teacher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38288,7 +38292,7 @@ GameObject:
   - component: {fileID: 1080748506}
   m_Layer: 0
   m_Name: Jonathan_GPT
-  m_TagString: Untagged
+  m_TagString: Jonathan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40864,7 +40868,7 @@ GameObject:
   - component: {fileID: 1192779487}
   m_Layer: 0
   m_Name: Male_Child_VoiceOVer/LipSync
-  m_TagString: Untagged
+  m_TagString: Jonathan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61544,7 +61548,7 @@ GameObject:
   - component: {fileID: 1628985273}
   m_Layer: 0
   m_Name: Teacher_GPT
-  m_TagString: Untagged
+  m_TagString: Teacher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66548,7 +66552,7 @@ GameObject:
   - component: {fileID: 1785823911}
   m_Layer: 0
   m_Name: Emily_GPT
-  m_TagString: Untagged
+  m_TagString: Emily
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69550,7 +69554,7 @@ GameObject:
   - component: {fileID: 1876336343}
   m_Layer: 0
   m_Name: TeacherNPC
-  m_TagString: Untagged
+  m_TagString: Teacher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70077,7 +70081,7 @@ GameObject:
   - component: {fileID: 1918314944}
   m_Layer: 0
   m_Name: EmilyNPC
-  m_TagString: Untagged
+  m_TagString: Emily
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72979,7 +72983,7 @@ GameObject:
   - component: {fileID: 2026871033}
   m_Layer: 0
   m_Name: Female_Child_VoiceOver/LipSync
-  m_TagString: Untagged
+  m_TagString: Emily
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78081,7 +78085,7 @@ GameObject:
   - component: {fileID: 2135639966}
   m_Layer: 0
   m_Name: Female_Child_01_facial
-  m_TagString: Untagged
+  m_TagString: Emily
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

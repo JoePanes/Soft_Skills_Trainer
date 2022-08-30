@@ -6,6 +6,7 @@ using Yarn.Markup;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.Events;
+using System.Threading.Tasks;
 
 public class CharacterYarnLineHandler : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
     public Text debugText;
 
-    private GameObject ConversationController;
+    private ConversationController ConversationController;
 
     
 
@@ -84,7 +85,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
         GetLineIDs();
         SortLineIDs();
         GetLinesFromIDs();
-        ConversationController = GameObject.Find("ConversationController");
+        ConversationController = GameObject.Find("ConversationController").GetComponent<ConversationController>();
     }
 
 
@@ -243,13 +244,17 @@ public class CharacterYarnLineHandler : MonoBehaviour
     public async void CharacterSpeechPlayback()                                   //sets the line to be sent to the TTS from the line list and sends
     {
         //Debug.LogError(characterName + " speaking...");
-
         if (characterSpeechManager.isReady)
         {
             if (learningResponseActivate)
             {
-                learningResponseLine = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(learningResponseLine);
+
+                learningResponseLine = await GetResponse(learningResponseLine);
+                Debug.Log(learningResponseLine);
                 characterSpeechManager.SpeakWithSDKPlugin(learningResponseLine);
+
+                await DetermineSentiment(learningResponseLine);
+
                 //StartCoroutine(CharacterVolTrim());
                 StartCoroutine(CharacterWaitForLineToFinish());
                 learningResponseActivate = false;
@@ -257,10 +262,13 @@ public class CharacterYarnLineHandler : MonoBehaviour
             else
             {
                 
-                string lineToBeSpoken = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(characterTextLineList[characterLineCount]);
+                string lineToBeSpoken = await GetResponse(characterTextLineList[characterLineCount]);
 
                 Debug.Log(lineToBeSpoken);
                 characterSpeechManager.SpeakWithSDKPlugin(lineToBeSpoken);
+
+                await DetermineSentiment(learningResponseLine);
+
                 characterLineCount++;
                 StartCoroutine(CharacterWaitForLineToFinish());
             }
@@ -270,6 +278,37 @@ public class CharacterYarnLineHandler : MonoBehaviour
         {
             Debug.Log(characterName + "'s speechManager is not ready. Wait until authentication has completed.");
         }
+    }
+
+    /// <summary>
+    /// Determine which text should be given to the text-to-speech system.
+    /// Whether to use the pre-written or GPT generated system
+    /// </summary>
+    /// <param name="text">The original pre-written text</param>
+    /// <returns></returns>
+    private async Task<string> GetResponse(string text)
+    {
+        switch (ConversationController.NPC_TEXT_MODE)
+        {
+            case 0:
+                //Nothing needs to be done
+                return text;
+            case 1:
+                return text = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(text);
+            case 2:
+                //To do:
+                return "boop";
+            default:
+                Debug.LogError("Invalid value for NPC_TEXT_MODE in ConversationController.cs");
+                return "If you are seeing/hearing this then there is something wrong with NPC_TEXT_MODE in ConversationController.cs.";
+               
+        }
+    }
+
+    private async Task DetermineSentiment(string lineToBeSpoken)
+    {
+        string sentiment = await GPTHandler.GetComponent<GPT3>().GetSentiment(lineToBeSpoken);
+        characterModel.GetComponent<NPCAnimationController>().UpdateEmotion(sentiment);
     }
 
     public IEnumerator CharacterWaitForLineToFinish()                       //coroutine set to complete once the NPCs audio clip has completed
