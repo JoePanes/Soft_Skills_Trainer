@@ -4,7 +4,8 @@ using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.Events;
 using Oculus.Voice.Demo.UIShapesDemo;
-
+using UnityEngine.UI;
+using TMPro;
 
 public class OptionController : MonoBehaviour
 {
@@ -20,11 +21,11 @@ public class OptionController : MonoBehaviour
 
     public UnityEvent OptionSelected;
 
-    private GameObject ConversationController;
+    private ConversationController ConversationController;
 
     void Awake()
     {
-        ConversationController = GameObject.Find("ConversationController");
+        ConversationController = GameObject.Find("ConversationController").GetComponent<ConversationController>();
     }
 
     public IEnumerator GatherOptions()
@@ -79,7 +80,13 @@ public class OptionController : MonoBehaviour
         InteractionHandler.CancelVoiceAttempt();
 
         //Let virtual humans know that the user has finished talking
-        ConversationController.GetComponent<ConversationController>().SomeoneIsNotTalking();
+        ConversationController.SomeoneIsNotTalking();
+
+        if (ConversationController.NPC_TEXT_MODE == 2)
+        {
+            ConversationController.AddToTranscript("User", Options[OptionToSelect].GetComponentInChildren<TextMeshProUGUI>().text);
+            Debug.Log("Added user's choice to transcript");
+        }
 
         yield return new WaitForSeconds(2f);
         for (int i = 0; i < transform.childCount; i++)

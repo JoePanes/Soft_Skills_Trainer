@@ -15,6 +15,7 @@ TagManager:
   - MenuNPC
   - NPC_Prefab
   - NPCPrefab
+  - not_conversational
   layers:
   - Default
   - TransparentFX

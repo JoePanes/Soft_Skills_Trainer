@@ -11,6 +11,7 @@ public class GPT3 : MonoBehaviour
 
     [SerializeField] private string persona;
     [SerializeField] private string currentMood;
+    [SerializeField] private string backgroundInfo;
     OpenAIAPI api;
 
     private int MAX_TOKEN = 200;
@@ -163,7 +164,6 @@ public class GPT3 : MonoBehaviour
         {
             Debug.LogError(e.Message);
         }
-        //In the event of an error, return neutral
         return "error =(";
     }
 
@@ -171,5 +171,22 @@ public class GPT3 : MonoBehaviour
     {
         return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c))
             .ToArray());
+    }
+
+    public async Task<string> GetConversationalResponse(string transcript, string npcName)
+    {
+        //Get the prompt ready for the model
+        string promptForModel = @"The following is a conversation between you and the user. You are a " + persona + ", called " + npcName + ".\n";
+        promptForModel += npcName + " has " + backgroundInfo + ".\n" + transcript;
+        promptForModel += npcName + ": ";
+
+        var result = await api.Completions.CreateCompletionAsync(
+            prompt: promptForModel,
+            max_tokens: MAX_TOKEN,
+            temperature: 0.9
+            );
+
+        return result.ToString();
+
     }
 }

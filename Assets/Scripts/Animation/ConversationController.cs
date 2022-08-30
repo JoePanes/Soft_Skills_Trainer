@@ -10,7 +10,7 @@ public class ConversationController : MonoBehaviour
     // 0, use the human written script
     // 1, text variation
     // 2, prompted conversation
-    public const int NPC_TEXT_MODE = 1;
+    public const int NPC_TEXT_MODE = 2;
     public bool someoneTalking { get; private set;}
     
     void Awake()
@@ -53,6 +53,8 @@ public class ConversationController : MonoBehaviour
     public void AddToTranscript(string talkerIdentifier, string newText)
     {
         transcript = transcript + ".\n" + talkerIdentifier + ": " + newText;
+
+        Debug.Log(transcript);
     }
 
     public string GetTranscript()

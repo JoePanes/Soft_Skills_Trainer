@@ -2812,7 +2812,7 @@ GameObject:
   - component: {fileID: 55344153}
   m_Layer: 0
   m_Name: TeacherNPC_TTS
-  m_TagString: Teacher
+  m_TagString: not_conversational
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2835,6 +2835,7 @@ MonoBehaviour:
   characterSpeechManager: {fileID: 55344154}
   characterAudioSource: {fileID: 779485659}
   GPTHandler: {fileID: 1628985271}
+  ignoreCharacterInTranscriptions: 1
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -7332,6 +7333,7 @@ MonoBehaviour:
   characterSpeechManager: {fileID: 224688138}
   characterAudioSource: {fileID: 1192779490}
   GPTHandler: {fileID: 1080748505}
+  ignoreCharacterInTranscriptions: 0
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -21604,6 +21606,7 @@ MonoBehaviour:
   characterSpeechManager: {fileID: 613411542}
   characterAudioSource: {fileID: 2026871036}
   GPTHandler: {fileID: 1785823909}
+  ignoreCharacterInTranscriptions: 0
   characterTextLineList: []
   characterNegativeLineList: []
   characterNeutralLineList: []
@@ -23189,7 +23192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c860be88ffee4ae498b1ff784c87f552, type: 3}
       propertyPath: m_TagString
-      value: Teacher
+      value: not_conversational
       objectReference: {fileID: 0}
     - target: {fileID: 2036043854895618285, guid: c860be88ffee4ae498b1ff784c87f552, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28184,7 +28187,7 @@ GameObject:
   - component: {fileID: 779485660}
   m_Layer: 0
   m_Name: Female_Teacher_VoiceOVer/LipSync
-  m_TagString: Teacher
+  m_TagString: not_conversational
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38311,6 +38314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persona: young boy
   currentMood: 
+  backgroundInfo: made a joke about Emily having sandwiches. Johnathan thought it
+    was a bit of a joke, and since everyone else was laughing he decided to keep
+    on going. He did not realise how much it upset Emily.
 --- !u!4 &1080748507
 Transform:
   m_ObjectHideFlags: 0
@@ -61548,7 +61554,7 @@ GameObject:
   - component: {fileID: 1628985273}
   m_Layer: 0
   m_Name: Teacher_GPT
-  m_TagString: Teacher
+  m_TagString: not_conversational
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61582,6 +61588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persona: friendly school teacher
   currentMood: 
+  backgroundInfo: 
 --- !u!1001 &1634524229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66586,6 +66593,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persona: young girl
   currentMood: 
+  backgroundInfo: been left upset after being laughed at by her fellow students,
+    where Jonathan teased her for bringing in sandwices again. Emily brings in sandwiches
+    for lunch due to her having diabetes, so her mum prepares her lunches since Emily
+    cannot eat certain things. Emily tried explaining this to everyone, but they
+    would not listen, and she ran off upset by this.
 --- !u!43 &1787773955
 Mesh:
   m_ObjectHideFlags: 0
@@ -69554,7 +69566,7 @@ GameObject:
   - component: {fileID: 1876336343}
   m_Layer: 0
   m_Name: TeacherNPC
-  m_TagString: Teacher
+  m_TagString: not_conversational
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

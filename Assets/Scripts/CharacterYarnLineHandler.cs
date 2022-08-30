@@ -21,6 +21,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
     public AudioSource characterAudioSource;
 
     [SerializeField] private GameObject GPTHandler;
+    [SerializeField] private bool ignoreCharacterInTranscriptions;
 
     private List<string> allLinesIDList = new List<string>();
     private List<string> characterLineIDList = new List<string>();
@@ -248,12 +249,9 @@ public class CharacterYarnLineHandler : MonoBehaviour
         {
             if (learningResponseActivate)
             {
+                string response = await HandleNPCTextForTTS(learningResponseLine);
 
-                learningResponseLine = await GetResponse(learningResponseLine);
-                Debug.Log(learningResponseLine);
-                characterSpeechManager.SpeakWithSDKPlugin(learningResponseLine);
-
-                await DetermineSentiment(learningResponseLine);
+                characterSpeechManager.SpeakWithSDKPlugin(response);
 
                 //StartCoroutine(CharacterVolTrim());
                 StartCoroutine(CharacterWaitForLineToFinish());
@@ -261,14 +259,11 @@ public class CharacterYarnLineHandler : MonoBehaviour
             }
             else
             {
+                string response = await HandleNPCTextForTTS(characterTextLineList[characterLineCount]);
+
+
+                characterSpeechManager.SpeakWithSDKPlugin(response);
                 
-                string lineToBeSpoken = await GetResponse(characterTextLineList[characterLineCount]);
-
-                Debug.Log(lineToBeSpoken);
-                characterSpeechManager.SpeakWithSDKPlugin(lineToBeSpoken);
-
-                await DetermineSentiment(learningResponseLine);
-
                 characterLineCount++;
                 StartCoroutine(CharacterWaitForLineToFinish());
             }
@@ -294,10 +289,10 @@ public class CharacterYarnLineHandler : MonoBehaviour
                 //Nothing needs to be done
                 return text;
             case 1:
-                return text = await GPTHandler.GetComponent<GPT3>().HandleVariationCall(text);
+                return await GPTHandler.GetComponent<GPT3>().HandleVariationCall(text);
             case 2:
                 //To do:
-                return "boop";
+                return await GPTHandler.GetComponent<GPT3>().GetConversationalResponse(ConversationController.GetTranscript(), characterName);
             default:
                 Debug.LogError("Invalid value for NPC_TEXT_MODE in ConversationController.cs");
                 return "If you are seeing/hearing this then there is something wrong with NPC_TEXT_MODE in ConversationController.cs.";
@@ -305,10 +300,68 @@ public class CharacterYarnLineHandler : MonoBehaviour
         }
     }
 
-    private async Task DetermineSentiment(string lineToBeSpoken)
+
+    private async Task<string> HandleNPCTextForTTS(string text)
+    {
+        Debug.Log(characterName + " " + characterModel.tag);
+        if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions)
+        {
+            Debug.Log("yes");
+            text = await GetResponse(text, 1);
+        }
+        else
+        {
+            text = await GetResponse(text);
+        }
+
+        if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions == false)
+        {
+            ConversationController.AddToTranscript(characterName, text);
+        }
+        Debug.Log(text);
+
+        string sentiment = await DetermineSentiment(text);
+        Debug.Log(".sentiment: " + sentiment);
+
+        return text;
+    }
+    /// <summary>
+    /// Determine which text should be given to the text-to-speech system.
+    /// Whether to use the pre-written or GPT generated system
+    /// 
+    /// For text mode:
+    /// 0, nothing returns the original text
+    /// 1, text variation
+    /// 2, prompted conversation
+    /// </summary>
+    /// <param name="text">The original pre-written text</param>
+    /// <param name="textMode">How to handle the text, and what the response should be</param>
+    /// <returns></returns>
+    private async Task<string> GetResponse(string text, int textMode)
+    {
+        switch (textMode)
+        {
+            case 0:
+                //Nothing needs to be done
+                return text;
+            case 1:
+                return await GPTHandler.GetComponent<GPT3>().HandleVariationCall(text);
+            case 2:
+                //To do:
+                return await GPTHandler.GetComponent<GPT3>().GetConversationalResponse(ConversationController.GetTranscript(), characterName);
+            default:
+                Debug.LogError("Invalid value for NPC_TEXT_MODE in ConversationController.cs");
+                return "If you are seeing/hearing this then there is something wrong with NPC_TEXT_MODE in ConversationController.cs.";
+
+        }
+    }
+
+    private async Task<string> DetermineSentiment(string lineToBeSpoken)
     {
         string sentiment = await GPTHandler.GetComponent<GPT3>().GetSentiment(lineToBeSpoken);
         characterModel.GetComponent<NPCAnimationController>().UpdateEmotion(sentiment);
+
+        return sentiment;
     }
 
     public IEnumerator CharacterWaitForLineToFinish()                       //coroutine set to complete once the NPCs audio clip has completed
