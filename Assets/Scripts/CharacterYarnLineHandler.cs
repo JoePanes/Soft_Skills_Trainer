@@ -303,10 +303,8 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
     private async Task<string> HandleNPCTextForTTS(string text)
     {
-        Debug.Log(characterName + " " + characterModel.tag);
         if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions)
         {
-            Debug.Log("yes");
             text = await GetResponse(text, 1);
         }
         else
@@ -316,13 +314,39 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
         if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions == false)
         {
+            //Sometimes GPT-3 takes the transcript and tries to complete the conversation itself
+            //here we try to stop any additional speakers other than the one asked from being read and added to the transcript
+            string[] splitText = text.Split(char.Parse("|"));
+            for (int i = 0; i < splitText.Length; i++)
+            {
+                Debug.Log(splitText[i]);
+            }
+
+            //If true, then more than one speaker has been added
+            
+            if(splitText.Length > 1)
+            {
+                //We expect the format for this to be
+                //speaker| their text
+                //nextspeaker 
+                //Where the final bit of text will be the name given before the next |
+                splitText = splitText[0].Split(char.Parse("\n"));
+
+                text = "";
+                for (int i = 0; i < splitText.Length-1; i++)
+                {
+                    text = splitText[i] + "\n";
+                    Debug.Log(splitText[i]);
+                }
+
+            }
+
             ConversationController.AddToTranscript(characterName, text);
         }
         Debug.Log(text);
 
         string sentiment = await DetermineSentiment(text);
-        Debug.Log(".sentiment: " + sentiment);
-
+       
         return text;
     }
     /// <summary>
@@ -347,8 +371,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
             case 1:
                 return await GPTHandler.GetComponent<GPT3>().HandleVariationCall(text);
             case 2:
-                //To do:
-                return await GPTHandler.GetComponent<GPT3>().GetConversationalResponse(ConversationController.GetTranscript(), characterName);
+                return await GPTHandler.GetComponent<GPT3>().GetConversationalResponse(ConversationController.GetTranscript(), characterName);                
             default:
                 Debug.LogError("Invalid value for NPC_TEXT_MODE in ConversationController.cs");
                 return "If you are seeing/hearing this then there is something wrong with NPC_TEXT_MODE in ConversationController.cs.";

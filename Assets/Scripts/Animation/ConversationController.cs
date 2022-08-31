@@ -52,7 +52,7 @@ public class ConversationController : MonoBehaviour
     /// <param name="newText">The new text to added to the conversation</param>
     public void AddToTranscript(string talkerIdentifier, string newText)
     {
-        transcript = transcript + ".\n" + talkerIdentifier + ": " + newText;
+        transcript = transcript + "\n" + talkerIdentifier + "| " + newText;
 
         Debug.Log(transcript);
     }

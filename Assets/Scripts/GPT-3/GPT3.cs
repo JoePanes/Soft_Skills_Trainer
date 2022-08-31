@@ -77,7 +77,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "Your sole purpose is as follows:\n Write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\"" + message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 0.9
+                temperature: 0.8
                 );
             Debug.Log("message: " + result.ToString());
             return result.ToString();
@@ -105,7 +105,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "You are a " + persona + ", write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\""+ message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 0.9
+                temperature: 0.8
                 );
 
             return result.ToString();
@@ -132,7 +132,7 @@ public class GPT3 : MonoBehaviour
             var result = await api.Completions.CreateCompletionAsync(
                 prompt: restriction + "You are a " + currentEmotion + ", "+ persona + ", write in a naturally spoken manner that is distinct in how it is written, strictly retains the meaning and context is based on but also is a variation of the following text:\n\"" + message + "\".",
                 max_tokens: MAX_TOKEN,
-                temperature: 0.9
+                temperature: 0.8
                 );
 
             return result.ToString();
@@ -178,7 +178,7 @@ public class GPT3 : MonoBehaviour
         //Get the prompt ready for the model
         string promptForModel = @"The following is a conversation between you and the user. You are a " + persona + ", called " + npcName + ".\n";
         promptForModel += npcName + " has " + backgroundInfo + ".\n" + transcript;
-        promptForModel += npcName + ": ";
+        promptForModel += npcName + "| ";
 
         var result = await api.Completions.CreateCompletionAsync(
             prompt: promptForModel,
