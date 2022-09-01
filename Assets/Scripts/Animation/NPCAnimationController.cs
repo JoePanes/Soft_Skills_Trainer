@@ -19,9 +19,9 @@ public class NPCAnimationController : MonoBehaviour
     {
         animControl = GetComponent<Animator>();
         
-        InvokeRepeating("SelectIdleAnimation", 0.0f, 10.0f);
+        InvokeRepeating("SelectIdleAnimation", 0.0f, 30.0f);
         InvokeRepeating("SelectListeningAnimation", 0.0f, 3.0f);
-        InvokeRepeating("SelectTalkingAnimation", 0.0f, 10.0f);
+        InvokeRepeating("SelectTalkingAnimation", 0.0f, 15.0f);
 
         ConversationController = GameObject.Find("ConversationController").GetComponent<ConversationController>();
     }
