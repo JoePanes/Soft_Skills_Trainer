@@ -283,7 +283,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
     /// <returns></returns>
     private async Task<string> GetResponse(string text)
     {
-        switch (ConversationController.NPC_TEXT_MODE)
+        switch (ConversationController.GetTextMode())
         {
             case 0:
                 //Nothing needs to be done
@@ -303,7 +303,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
 
     private async Task<string> HandleNPCTextForTTS(string text)
     {
-        if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions)
+        if (ConversationController.GetTextMode() == 2 && ignoreCharacterInTranscriptions)
         {
             text = await GetResponse(text, 1);
         }
@@ -312,7 +312,7 @@ public class CharacterYarnLineHandler : MonoBehaviour
             text = await GetResponse(text);
         }
 
-        if (ConversationController.NPC_TEXT_MODE == 2 && ignoreCharacterInTranscriptions == false)
+        if (ConversationController.GetTextMode() == 2 && ignoreCharacterInTranscriptions == false)
         {
             //Sometimes GPT-3 takes the transcript and tries to complete the conversation itself
             //here we try to stop any additional speakers other than the one asked from being read and added to the transcript

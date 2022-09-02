@@ -7,10 +7,10 @@ public class ConversationController : MonoBehaviour
     private string transcript = "";
 
     // Controls the use of GPT-3
-    // 0, use the human written script
+    // 0, (off) use the human written script
     // 1, text variation
     // 2, prompted conversation
-    public const int NPC_TEXT_MODE = 2;
+    [SerializeField][Range (0,2)] private int gptTextMode;
     public bool someoneTalking { get; private set;}
     
     void Awake()
@@ -62,4 +62,9 @@ public class ConversationController : MonoBehaviour
         return transcript;
     }
 
+
+    public int GetTextMode()
+    {
+        return gptTextMode;
+    }
 }

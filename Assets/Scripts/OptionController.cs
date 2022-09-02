@@ -82,7 +82,7 @@ public class OptionController : MonoBehaviour
         //Let virtual humans know that the user has finished talking
         ConversationController.SomeoneIsNotTalking();
 
-        if (ConversationController.NPC_TEXT_MODE == 2)
+        if (ConversationController.GetTextMode() == 2)
         {
             ConversationController.AddToTranscript("User", Options[OptionToSelect].GetComponentInChildren<TextMeshProUGUI>().text);
             Debug.Log("Added user's choice to transcript");

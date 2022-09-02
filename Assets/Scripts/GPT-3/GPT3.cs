@@ -19,7 +19,7 @@ public class GPT3 : MonoBehaviour
     private string restriction = @"The following is for a conversation that you are having with the user, write in a spoken manner in first person.
                                    You have a virtual avatar, so please do not write descriptive text.
                                    For your prompt, only reference the quoted text, everything else is instructional so as to help construct your response. 
-                                   Any names in this text are other people, not you, nor the person you are speaking to.  
+                                   When there is a name in the text, that is someone you are talking about not talking to.  
                                    In addition, follow these next instructions closely:" +"\n";
     private void Awake()
     {
