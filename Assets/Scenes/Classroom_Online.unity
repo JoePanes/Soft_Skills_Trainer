@@ -5620,7 +5620,7 @@ MonoBehaviour:
   - {fileID: 1150032968}
   - {fileID: 1539705754}
   lookAtPlayerRatio: 0.7
-  stareBackFactor: 0.5
+  stareBackFactor: 1
   noticePlayerDistance: 100
   personalSpaceDistance: 0
   minLookTime: 3
@@ -19908,7 +19908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958332315337656, guid: 5a652a60006d6ec46980e623412396f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.682
+      value: -0.836
       objectReference: {fileID: 0}
     - target: {fileID: 4958332315337656, guid: 5a652a60006d6ec46980e623412396f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19916,7 +19916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958332315337656, guid: 5a652a60006d6ec46980e623412396f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.638
+      value: 1.685
       objectReference: {fileID: 0}
     - target: {fileID: 4958332315337656, guid: 5a652a60006d6ec46980e623412396f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26060,7 +26060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734497840}
   m_LocalRotation: {x: -0, y: 0.051662777, z: -0, w: 0.99866456}
-  m_LocalPosition: {x: 1.069, y: -0.067, z: -2.051}
+  m_LocalPosition: {x: 1.212, y: -0.067, z: -2.145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49129,7 +49129,7 @@ MonoBehaviour:
   - {fileID: 742519941}
   - {fileID: 1539705754}
   lookAtPlayerRatio: 0.7
-  stareBackFactor: 0
+  stareBackFactor: 1
   noticePlayerDistance: 100
   personalSpaceDistance: 0
   minLookTime: 3
@@ -66938,7 +66938,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   lookAtPlayerRatio: 0.8
-  stareBackFactor: 0
+  stareBackFactor: 1
   noticePlayerDistance: 0
   personalSpaceDistance: 0
   minLookTime: 3
